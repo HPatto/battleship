@@ -16,11 +16,26 @@ number of hits it has received.
 */
 
 export class Ship {
-    constructor() {
-
+    constructor(length) {
+        this.length = length;
+        this.receivedHits = 0;
+        this.sunk = false;
     }
 
     hit() {
-        
+        // Increment receivedHits, call isSunk(). If true, update bool.
+        this.receivedHits++;
+        if (this.isSunk()) {
+            this.sunk = true;
+        }
+    }
+
+    isSunk() {
+        // If the number of hits >= length, the ship is sunk.
+        // No restriction on the user bombing the same spots again.
+
+        return (
+            this.receivedHits >= this.length
+        );   
     }
 }
