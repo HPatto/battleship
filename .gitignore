@@ -1,0 +1,5 @@
+# Node Modules
+node_modules/
+
+# Generated Test Reports or Build Artifacts
+coverage/
