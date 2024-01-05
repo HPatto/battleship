@@ -31,7 +31,8 @@ test('hit() alters the sunken state at correct length', () => {
     const aShip = new Ship(shipLength);
 
     // Expect hitCount < 3 to not change sunken status
-    // Expect hitCount >= 3 to change sunken status
+    // Expect hitCount === 3 to change sunken status
+    // Expect hitCount > 3 to stay sunken (Altho not possible)
 
     // One hit
     aShip.hit();

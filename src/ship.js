@@ -16,6 +16,7 @@ number of hits it has received.
 */
 
 export class Ship {
+    // Onus is on the constructing object to ensure valid lengths.
     constructor(length) {
         this.length = length;
         this.receivedHits = 0;
@@ -24,18 +25,24 @@ export class Ship {
 
     hit() {
         // Increment receivedHits, call isSunk(). If true, update bool.
-        this.receivedHits++;
-        if (this.isSunk()) {
-            this.sunk = true;
+        if (!(this.isSunk())) {
+            this.receivedHits++;
+            
+            if (this.isSunk()) {
+                this.sunk = true;
+            }
         }
+
     }
 
     isSunk() {
-        // If the number of hits >= length, the ship is sunk.
-        // No restriction on the user bombing the same spots again.
+        // If the number of hits === length, the ship is sunk.
+
+        // Onus is on another object to prevent the same spot being hit.
+        // If the ship is sunken, no parameters are updated.
 
         return (
-            this.receivedHits >= this.length
+            this.receivedHits === this.length
         );   
     }
 }
