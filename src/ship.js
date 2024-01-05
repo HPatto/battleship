@@ -15,3 +15,12 @@ ship is considered sunk based on its length and the
 number of hits it has received.
 */
 
+export class Ship {
+    constructor() {
+
+    }
+
+    hit() {
+        
+    }
+}
