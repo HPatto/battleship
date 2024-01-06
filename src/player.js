@@ -21,7 +21,7 @@ export class Player {
 
     sendAttack(attackCoords) {
         // Only sent for new coords
-        if (!(attackCoords in this.alreadyCalled)) {
+        if (this.isValidAttack(attackCoords)) {
             this.alreadyCalled.push(attackCoords);
             return attackCoords;
         }
@@ -35,7 +35,41 @@ export class Player {
         return new Gameboard();
     }
 
+    placeShip(startCoord, finishCoord) {
+        this.playerGameboard.placeShip(startCoord, finishCoord);
+    }
+
     hasLost() {
         return this.playerGameboard.getAllShipsSunk();
+    }
+
+    isValidAttack(coord) {
+        return (!(coord in this.alreadyCalled));
+    }
+
+    sendRandomAttack() {
+
+        let attackCoords = undefined;
+        
+        while (
+            attackCoords === undefined ||
+            !this.isValidAttack(attackCoords)
+        ) {
+            let xCoord = this.getRandomLetter();
+            let yCoord = this.getRandomNumber(1, 10);
+        }
+
+        attackCoords = xCoord + yCoord;
+        this.sendAttack(attackCoords);
+    }
+
+    getRandomLetter() {
+        const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generates ASCII code for A-Z
+        const randomLetter = String.fromCharCode(randomCharCode);
+        return randomLetter;
+    }
+
+    getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
