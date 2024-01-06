@@ -23,7 +23,7 @@ export class Gameboard {
     constructor() {
         this.gameBoard = this.setGameboard();
         this.missedAttacks = [];
-        this.numOfShips = 0;
+        this.Ships = [];
     }
 
     setGameboard() {
@@ -99,7 +99,7 @@ export class Gameboard {
             this.gameBoard[shipCoordArray[i]] = newShip;
         }
 
-        this.numOfShips++;
+        this.Ships.push(newShip);
     }
 
     receiveAttack(attackCoord) {
@@ -183,6 +183,16 @@ export class Gameboard {
     getMissedAttacks() {
         return this.missedAttacks;
     }
+
+    getAllShipsSunk() {
+        if (this.Ships.length === 0) {
+            return false;
+        } else {
+            return this.Ships.every((ship) => {
+                return ship.isSunk()
+            })
+        }
+    }
 }
 
 // const myGameboard = new Gameboard();
@@ -196,4 +206,7 @@ export class Gameboard {
 // myGameboard.receiveAttack("A4");
 // myGameboard.receiveAttack("A5");
 
+// myGameboard.receiveAttack("C4");
+
 // myGameboard.getGameboard();
+// console.log(myGameboard.getMissedAttacks());
