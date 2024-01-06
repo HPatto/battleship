@@ -57,7 +57,7 @@ export class Gameboard {
     }
 
     getGameboard() {
-        console.log(this.gameBoard);
+        return this.gameBoard;
     }
 
     placeShip(startCoord, finishCoord) {
