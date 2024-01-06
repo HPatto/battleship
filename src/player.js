@@ -21,10 +21,8 @@ export class Player {
 
     sendAttack(attackCoords) {
         // Only sent for new coords
-        if (this.isValidAttack(attackCoords)) {
-            this.alreadyCalled.push(attackCoords);
-            return attackCoords;
-        }
+        this.alreadyCalled.push(attackCoords);
+        return attackCoords;
     }
 
     receieveAttack(attackCoords) {
@@ -50,21 +48,25 @@ export class Player {
     sendRandomAttack() {
 
         let attackCoords = undefined;
+        // console.log("coords are undefined: " + (attackCoords === undefined));
         
         while (
             attackCoords === undefined ||
-            !this.isValidAttack(attackCoords)
+            !(this.isValidAttack(attackCoords))
         ) {
             let xCoord = this.getRandomLetter();
             let yCoord = this.getRandomNumber(1, 10);
+            attackCoords = xCoord + yCoord;
+            // console.log(xCoord);
+            // console.log(yCoord);
         }
 
-        attackCoords = xCoord + yCoord;
-        this.sendAttack(attackCoords);
+        // console.log(attackCoords);
+        return this.sendAttack(attackCoords);
     }
 
     getRandomLetter() {
-        const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generates ASCII code for A-Z
+        const randomCharCode = Math.floor(Math.random() * 10) + 65; // Generates ASCII code for A-Z
         const randomLetter = String.fromCharCode(randomCharCode);
         return randomLetter;
     }
