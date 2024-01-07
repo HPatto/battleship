@@ -24,7 +24,7 @@ export class HTMLGeneration {
 
         // Set the required attributes on the elements
         headerDiv = addId(headerDiv, 'header');
-        titleParagraph = addClasses(titleParagraph, ['title']);
+        titleParagraph = addClasses(titleParagraph, ['header-text']);
         // subtitleParagraph = addClasses(subtitleParagraph, ['subtitle']);
 
         // Set the text content of the elements
