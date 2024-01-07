@@ -1,6 +1,6 @@
 /* Responsible for the high-level execution of the battleship game */
 
-import { Player } from './player.js';
+import { Player } from '../src/player.js';
 
 export class Game {
     constructor() {
@@ -89,8 +89,3 @@ export class Game {
         return aPlayer.hasLost();
     }
 }
-
-// Run the game
-
-let newGame = new Game();
-newGame.playGame();
