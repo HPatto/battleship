@@ -19,3 +19,12 @@ export function addId(element, idValue) {
     element.setAttribute('id', idValue);
     return element;
 }
+
+export function setNewContent(bodyElem, [newContentElemArray]) {
+    // We gotta be doing some serious stuff here
+    while (bodyElem.firstChild) {
+        bodyElem.removeChild(bodyElem.firstChild);
+    }
+
+    newContentElemArray.forEach(bodyElem.appendChild(newElem));
+}

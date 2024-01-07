@@ -3,7 +3,8 @@ import {
     makeDiv,
     makeParagraph,
     addClasses,
-    addId
+    addId,
+    setNewContent
 } from './manipulateDOM.js';
 
 export class HTMLGeneration {
@@ -18,65 +19,38 @@ export class HTMLGeneration {
         let titleParagraph = makeParagraph();
         let titleDiv = makeDiv();
 
-        let subtitleParagraph = makeParagraph();
-        let subtitleDiv = makeDiv();
+        // let subtitleParagraph = makeParagraph();
+        // let subtitleDiv = makeDiv();
 
         // Set the required attributes on the elements
         headerDiv = addId(headerDiv, 'header');
         titleParagraph = addClasses(titleParagraph, ['title']);
-        subtitleParagraph = addClasses(subtitleParagraph, ['subtitle']);
+        // subtitleParagraph = addClasses(subtitleParagraph, ['subtitle']);
 
         // Set the text content of the elements
-        titleParagraph.textContent = "SOUL FOOD";
-        subtitleParagraph.textContent = "Not just chicken soup!";
+        titleParagraph.textContent = "BATTLESHIP";
+        // subtitleParagraph.textContent = "Not just chicken soup!";
 
         // Build the overall element
         titleDiv.appendChild(titleParagraph);
-        subtitleDiv.appendChild(subtitleParagraph);
+        // subtitleDiv.appendChild(subtitleParagraph);
 
         headerDiv.appendChild(titleDiv);
-        headerDiv.appendChild(subtitleDiv);
+        // headerDiv.appendChild(subtitleDiv);
 
         return headerDiv;
     }
 
     // Define the body content. Return the top-level body div.
-    createBody() {
-        let centerDiv = makeDiv();
-        let navDiv = makeDiv();
-        let centerContentDiv = makeDiv();
+    createContent() {
+        // Hold all center content
+        let contentDiv = makeDiv();
 
-        let homeDiv = makeDiv();
-        let menuDiv = makeDiv();
-        let contactDiv = makeDiv();
+        // Add the section ID
+        contentDiv = addId(contentDiv, 'content');
 
-        centerDiv = addId(centerDiv, 'center');
-        navDiv = addId(navDiv, 'nav-options');
-        centerContentDiv = addId(centerContentDiv, 'center-content');
-
-        homeDiv = addClasses(homeDiv, ['nav-option', 'selected']);
-        menuDiv = addClasses(menuDiv, ['nav-option']);
-        contactDiv = addClasses(contactDiv, ['nav-option']);
-
-        homeDiv.textContent = (
-            "HOME"
-        );
-
-        menuDiv.textContent = (
-            "MENU"
-        );
-
-        contactDiv.textContent = (
-            "CONTACT"
-        );
-
-        navDiv.appendChild(homeDiv);
-        navDiv.appendChild(menuDiv);
-        navDiv.appendChild(contactDiv);
-
-        centerDiv.appendChild(navDiv);
-        centerDiv.appendChild(centerContentDiv);
-        return centerDiv;
+        contentDiv.textContent = "PLACEHOLDER TEXT";
+        return contentDiv;
     }
 
     // Define the footer content. Return the top-level footer div.
@@ -84,23 +58,28 @@ export class HTMLGeneration {
         // Create the necessary elements
         let footerDiv = makeDiv();
 
-        let disclaimerParagraph = makeParagraph();
-        let disclaimerDiv = makeDiv();
+        let creditParagraph = makeParagraph();
+        let creditDiv = makeDiv();
 
         // Set the required attributes on the elements
         footerDiv = addId(footerDiv, 'footer');
-        disclaimerParagraph = addClasses(disclaimerParagraph, ['subtitle']);
+        creditParagraph = addClasses(creditParagraph, ['footer-text']);
 
         // Set the text content of the elements
-        disclaimerParagraph.textContent = (
-            "Establishment is not responsible for any level of addiction to gumbo"
+        creditParagraph.textContent = (
+            "HPatto"
         );
     
         // Build the overall element
-        disclaimerDiv.appendChild(disclaimerParagraph);
-        footerDiv.appendChild(disclaimerDiv);
+        creditDiv.appendChild(creditParagraph);
+        footerDiv.appendChild(creditDiv);
 
         return footerDiv;
+    }
+
+    // Remove all content parent element, append new elements
+    setContent(parentElem, newChildElemArray) {
+        return setNewContent(parentElem, newChildElemArray);
     }
 }
 

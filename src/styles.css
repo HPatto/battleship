@@ -1,7 +1,65 @@
 :root {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 28px;
+    box-sizing: border-box;
 
-    --title-font: 28px;
-    --subtitle-font: 20px;
+    margin: 0px;
+
+    /* Define all variables to be used here */
+
+}
+
+/*
+Default styles I want set for specific elements
+This is used to stop horrible, miserable browser defaults that aren't
+covered in the normalize.css file.
+*/
+
+p {
+    margin: 0px;
+}
+
+#all-content {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#header {
+    background-color: darkblue;
+    color: lightgray;
+    /* Remove border after dev */
+    border: 2px dashed cyan;
+
+    flex: 1 1 auto;
+}
+
+#content {
+    background-color: white;
+    color: black;
+    /* Remove border after dev */
+    border: 2px solid orange;
+
+    flex: 8 0 auto;
+}
+
+#footer {
+    background-color: lightgray;
+    color: black;
+    /* Remove border after dev */
+    border: 2px dashed cyan;
+
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-text {
+    font-weight: 800;
 }
