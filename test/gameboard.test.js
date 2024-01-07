@@ -1,5 +1,5 @@
 /* Testing suite for the Gameboard object */
-import { Gameboard } from '../src/gameboard';
+import { Gameboard } from '../src/javascript/gameboard';
 
 // Well-behaved receieveAttack() function.
 test('Has a receieveAttack() function', () => {

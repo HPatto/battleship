@@ -1,5 +1,5 @@
 /* Testing suite for the Player object */
-import { Player } from '../src/player';
+import { Player } from '../src/javascript/player';
 
 // hasLost() function.
 test('hasLost() function works well', () => {

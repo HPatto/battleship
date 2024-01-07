@@ -8,6 +8,16 @@ export function makeParagraph() {
     return document.createElement('p');
 }
 
+export function makeImage() {
+    return document.createElement('img');
+}
+
+export function makeGitHubImage() {
+    let githubElement = makeImage();
+    githubElement = addId(githubElement, 'github-image');
+    return githubElement;
+}
+
 export function addClasses(element, classArray) {
     classArray.forEach(classAttribute => {
         element.classList.add(classAttribute);        

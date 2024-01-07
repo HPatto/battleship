@@ -1,5 +1,5 @@
 /* Testing suite for the Ship object */
-import { Ship } from '../src/ship';
+import { Ship } from '../src/javascript/ship';
 
 // Is there a hit() function.
 test('Has a hit() function', () => {

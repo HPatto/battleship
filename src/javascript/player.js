@@ -1,5 +1,5 @@
 /* Defines the Player object */
-import { Gameboard } from '../src/gameboard.js';
+import { Gameboard } from './gameboard.js';
 
 /*
 INSTRUCTIONS

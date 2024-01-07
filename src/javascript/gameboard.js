@@ -1,5 +1,5 @@
 /* Defines the Gameboard object */
-import { Ship } from '../src/ship.js';
+import { Ship } from './ship.js';
 
 /*
 INSTRUCTIONS

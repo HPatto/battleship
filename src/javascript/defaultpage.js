@@ -4,6 +4,7 @@ import {
     makeParagraph,
     addClasses,
     addId,
+    makeGitHubImage,
     setNewContent
 } from './manipulateDOM.js';
 
@@ -49,7 +50,7 @@ export class HTMLGeneration {
         // Add the section ID
         contentDiv = addId(contentDiv, 'content');
 
-        contentDiv.textContent = "PLACEHOLDER TEXT";
+        // contentDiv.textContent = "PLACEHOLDER TEXT";
         return contentDiv;
     }
 
@@ -59,11 +60,16 @@ export class HTMLGeneration {
         let footerDiv = makeDiv();
 
         let creditParagraph = makeParagraph();
+        let githubImage = makeGitHubImage();
         let creditDiv = makeDiv();
 
         // Set the required attributes on the elements
         footerDiv = addId(footerDiv, 'footer');
+        creditDiv = addId(creditDiv, 'credit-div');
         creditParagraph = addClasses(creditParagraph, ['footer-text']);
+
+        // creditDiv.setAttribute('href', 'https://github.com/HPatto');
+        githubImage.setAttribute('src', '../src/assets/github-mark.png');
 
         // Set the text content of the elements
         creditParagraph.textContent = (
@@ -71,6 +77,7 @@ export class HTMLGeneration {
         );
     
         // Build the overall element
+        creditDiv.append(githubImage);
         creditDiv.appendChild(creditParagraph);
         footerDiv.appendChild(creditDiv);
 
@@ -80,6 +87,11 @@ export class HTMLGeneration {
     // Remove all content parent element, append new elements
     setContent(parentElem, newChildElemArray) {
         return setNewContent(parentElem, newChildElemArray);
+    }
+
+    // Set a link in an element
+    setLink(element, link) {
+        element.location.href = link;
     }
 }
 

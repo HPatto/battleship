@@ -1,0 +1,242 @@
+:root {
+    font-family:
+        -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+
+    box-sizing: border-box;
+
+    /* Define all variables to be used here */
+
+    --dark-colour: #1f2937;
+    --mid-colour: #e5e7eb;
+    --light-colour: #f9faf8;
+
+    --start-colour: green;
+    --reset-colour: maroon;
+
+    --start-colour-click: darkgreen;
+    --reset-colour-click-bg: var(--light-colour);
+    --reset-colour-click-text: var(--dark-colour);
+
+    --general-padding: 10px;
+
+    --grid-size: 350px;
+    --grid-gap: 2px;
+    --grid-title-size: 28px;
+
+    --header-text-size: 30px;
+    --header-y-pad: calc(var(--header-text-size) * 0.8);
+    --header-x-pad: calc(var(--header-text-size) * 0.35);
+
+    --reset-text-size: 24px;
+
+    --footer-text-size: 20px;
+    --footer-y-pad: calc(var(--footer-text-size) * 0.5);
+    --footer-x-pad: var(--footer-text-size);
+}
+
+/*
+Default styles I want set for specific elements
+This is used to stop horrible, miserable browser defaults that aren't
+covered in the normalize.css file.
+*/
+
+p {
+    margin: 0px;
+}
+
+/* Page styles */
+
+#all-content {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#header {
+    background-color: var(--dark-colour);
+    color: var(--light-colour);    
+
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+
+    padding: var(--header-y-pad) var(--header-x-pad);
+}
+
+.header-text {
+    font-weight: 650;
+    letter-spacing: 8px;
+    font-size: var(--hedaer-text-size);
+}
+
+#content {
+    background-color: var(--light-colour);
+    color: var(--dark-colour);
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    flex: 8 0 auto;
+}
+
+#side-pane {
+    background-color: #1f2937;
+    border-top: 2px solid var(--light-colour);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--general-padding);
+
+    grid-column: 1 / 2;
+
+    padding: var(--general-padding);
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: calc(10 * var(--general-padding));
+}
+
+#combat-arena {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* justify-content: right; */
+    align-items: center;
+
+    /* gap: var(--general-padding); */
+    padding: var(--general-padding);
+
+    grid-column: 2 / 3;
+}
+
+.combatant-arena {
+    display: flex;
+    flex-direction: column;
+    gap: var(--general-padding);
+    justify-content: space-around;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+
+    background-color: #e5e7eb;
+
+    height: var(--grid-size);
+    width: var(--grid-size);
+
+    padding: 4px;
+    flex: 0 0 auto;
+}
+
+.grid-title {
+    color: #1f2937;
+    font-size: var(--grid-title-size);
+    letter-spacing: 4px;
+}
+
+.grid-row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--grid-gap);
+
+    flex: 1 0 auto;
+}
+
+.grid-element {
+    /* min-height: var(--grid-size);
+    min-width: var(--grid-size); */
+
+    /* aspect-ratio: 1 / 1; */
+    /* height: 100%;
+    width: 100%; */
+
+    flex: 1 0 auto;
+
+    background-color: white;
+    /* border: 3px solid red; */
+}
+
+#footer {
+    background-color: var(--mid-colour);
+    color: var(--dark-colour);
+
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: var(--footer-y-pad) var(--footer-x-pad);
+}
+
+#credit-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--footer-text-size) * 0.5);
+}
+
+.footer-text {
+    font-weight: 500;
+    font-size: var(--footer-text-size);
+    text-align: center;
+}
+
+#github-image {
+    height: var(--footer-text-size);
+    width: auto;
+
+    min-height: 10px;
+    max-height: 80px;
+}
+
+#start-button,
+#reset-button {
+    border:  2px solid var(--light-colour);
+    border-radius: 10px;
+    outline: none;
+
+    padding: var(--general-padding);
+}
+
+#start-button p,
+#reset-button p {
+    color: var(--light-colour);
+
+    font-size: var(--reset-text-size);
+    font-weight: 550;
+}
+
+#start-button {
+    background-color: var(--start-colour);
+}
+
+#start-button:active {
+    background-color: var(--start-colour-click);
+}
+
+#reset-button {
+    background-color: var(--reset-colour);
+}
+
+#reset-button:active,
+#reset-button:active p {
+    background-color: var(--reset-colour-click-bg);
+    color: var(--reset-colour-click-text);
+}

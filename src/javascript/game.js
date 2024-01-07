@@ -1,6 +1,6 @@
 /* Responsible for the high-level execution of the battleship game */
 
-import { Player } from '../src/player.js';
+import { Player } from './player.js';
 
 export class Game {
     constructor() {

@@ -1,9 +1,9 @@
 /* The command center for running the web-app */
 
-import '../src/normalize.css';
-import '../src/styles.css';
-import { HTMLGeneration } from "../src/defaultpage.js";
-import { Game } from "../src/game.js";
+import '../src/css/normalize.css';
+import '../src/css/styles.css';
+import { HTMLGeneration } from "../src/javascript/defaultpage.js";
+import { GameDOM } from "../src/javascript/gameDOM.js";
 
 function updateBodyContent(bodyElem, clickedElem) {
     let newContent;
@@ -20,20 +20,23 @@ function updateBodyContent(bodyElem, clickedElem) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Set the overall div element
-    // setOverallDiv();
-
+    // Get the overall div container
     let allElement = document.querySelector("#all-content");
-    // console.log(contentElement);
+
+    // Build an HTML generator object
     const newGenerator = new HTMLGeneration();
-    const newGame = new Game();
+    const newGameDOM = new GameDOM();
 
     // Build the three sections
     let header = newGenerator.createHeader();
-    // console.log(header);
     let content = newGenerator.createContent();
     let footer = newGenerator.createFooter();
 
+    // Update the content section
+    content.appendChild(newGameDOM.buildSidePane());
+    content.appendChild(newGameDOM.buildCombatArena());
+
+    // Add the threee sections
     allElement.appendChild(header);
     allElement.appendChild(content);
     allElement.appendChild(footer);
