@@ -19,11 +19,18 @@ export class GameDOM {
 
     // Set up the logic to begin accepting user input
     engage() {
+        // Set the new game
+        this.game = new Game();
+        this.game.setPlayers();
+
         // Ships placed
-        newGame.setShips();
+        this.game.setShips();
+
+        // console.log("This is the game object");
+        // console.log(this.game);
 
         // Map the ship locations to the HTML elements for player 1.
-        displayShips("PLAYER");
+        this.displayShips("PLAYER");
 
         // Some way to relate the board to the Map
 
@@ -33,8 +40,17 @@ export class GameDOM {
 
     displayShips(playerName) {
         // For each key in a player's gameboard, get the coords.
-        let playerShipLocations = playerName.getShipLocations();
+        let object;
+        if (playerName === "PLAYER") {
+            object = this.game.firstPlayer;
+        } else {
+            object = this.game.secondPlayer;
+        }
+        
+        let playerShipLocations = object.getShipLocations();
         const allElems = document.querySelectorAll("." + playerName);
+
+        // console.log(playerShipLocations);
         
         allElems.forEach((elem) => {
             playerShipLocations.forEach((coords) => {

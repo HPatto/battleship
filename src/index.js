@@ -41,7 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
     allElement.appendChild(content);
     allElement.appendChild(footer);
 
-    // Begin the game
+    // Start the game
+    const begin = document.querySelector('#start-button');
+    begin.addEventListener('click', () => {
+        newGameDOM.engage();
+    })
 
     // End the game
 });

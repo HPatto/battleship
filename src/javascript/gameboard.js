@@ -49,7 +49,7 @@ export class Gameboard {
         let boardMap = new Map();
 
         for (let i = 0; i < numCoords; i++) {
-            boardMap[allCoords[i]] = false;
+            boardMap.set(allCoords[i], false);
         }
         
         // console.log(boardMap);
@@ -96,7 +96,7 @@ export class Gameboard {
         shipCoordArray = this.getAllCoords(shipXCoords, shipYCoords);
 
         for (let i = 0; i < shipLength; i++) {
-            this.gameBoard[shipCoordArray[i]] = newShip;
+            this.gameBoard.set(shipCoordArray[i], newShip);
         }
 
         this.Ships.push(newShip);
@@ -104,12 +104,17 @@ export class Gameboard {
 
     getShipLocations() {
         let shipLocations = [];
+        // console.log(this.gameBoard);
+        // console.log(this.gameBoard.size);
+        // console.log(this.gameBoard.get("A1"));
+
         this.gameBoard.forEach((value, key) => {
             if (!(value === false)) {
                 shipLocations.push(key);
             }           
         });
-
+        console.log("We got all the way here");
+        console.log(shipLocations);
         return shipLocations;
     }
 
