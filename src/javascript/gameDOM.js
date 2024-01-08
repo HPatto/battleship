@@ -19,6 +19,9 @@ export class GameDOM {
 
     // Set up the logic to begin accepting user input
     engage() {
+        // Reset the HTML
+        
+
         // Build the new game
         this.game = new Game();
 
@@ -27,6 +30,8 @@ export class GameDOM {
 
         // Map the ship locations to the HTML elements for player 1.
         this.displayShips("PLAYER");
+
+        console.log("We got some ship done");
     }
 
     playGame() {

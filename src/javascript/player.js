@@ -69,36 +69,47 @@ export class Player {
         return this.sendAttack(attackCoords);
     }
 
-    validCoords(coordArray) {
+    coordsInUse(coordArray) {
         // Array has a number of string entries
         // We need to check each entry against the stored values.
-        const setValues = this.getShipLocations();
-        return !coordArray.some((coord) => {
-            return setValues.includes(coord);
-        });
+        let inUse = [];
+        
+        coordArray.forEach((coord) => {
+            inUse.push(this.coordInUse(coord));
+        })
+
+        return inUse.includes(true);
+    }
+
+    coordInUse(coord) {
+        return this.getShipLocations().includes(coord);
     }
 
     setShipCoords(shipLength) {
-        const seed = this.getSeedCoord(shipLength);
-        const orientation = this.getOrientation();
+        // const seed = this.getSeedCoord(shipLength);
+        // const orientation = this.getOrientation();
+
+        // console.log(seed);
+        // console.log(orientation);
 
         let shipCoords = false;
 
-        // console.log(this.getShipLocations());
-
         while (
             shipCoords === false ||
-            !this.validCoords(shipCoords)
-        ) {
-            shipCoords = this.buildShipCoords(seed, orientation, shipLength);
-            console.log("We set new coords");
+            this.coordsInUse(shipCoords)
+            ) {
+            shipCoords = this.buildShipCoords(
+                this.getSeedCoord(shipLength),
+                this.getOrientation(),
+                shipLength
+            );
         }
 
         this.placeShip(
             shipCoords[0],
             shipCoords[shipCoords.length - 1]
         );   
-        console.log('One ship placed!');
+        // console.log('One ship placed!');
     }
 
     buildShipCoords(seed, orientation, shipLength){
@@ -106,31 +117,24 @@ export class Player {
         const initY = seed[1]; // This is a number
         let coords = [];
 
-        // console.log(seed);
-
         if (orientation === 0) {
             // Horizontal position
             // Generate X values
             const xVals = this.playerGameboard.getXCoords(shipLength, initX.charCodeAt(0));
-            // console.log(xVals);
             xVals.forEach((xVal) => {
                 let coord = "" + xVal + initY;
                 coords.push(coord);
             });
-            // console.log("Horizontal");
         } else {
             // Vertical position
             // Generate Y values
             const yVals = this.playerGameboard.getYCoords(shipLength, initY);
             yVals.forEach((yVal) => {
                 let coord = "" + initX + yVal;
-                // console.log("Recorded coord:" + coord);
                 coords.push(coord);
             });
-            // console.log("Vertical");
         }
         
-        console.log(coords);
         return coords;
     }
 

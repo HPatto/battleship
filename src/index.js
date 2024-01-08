@@ -5,33 +5,9 @@ import '../src/css/styles.css';
 import { HTMLGeneration } from "../src/javascript/defaultpage.js";
 import { GameDOM } from "../src/javascript/gameDOM.js";
 
-function updateBodyContent(bodyElem, clickedElem) {
-    let newContent;
-
-    if (clickedElem.textContent === 'MENU') {
-        newContent = buildMenu();
-    } else if (clickedElem.textContent === 'CONTACT') {
-        newContent = buildContact();
-    } else if (clickedElem.textContent === 'HOME') {
-        newContent = buildHome();
-    }
-
-    setBodyContent(bodyElem, newContent);
-}
-
-function resetGame(text) {
-    console.log("GAME OVER. " + text + " WINS!");
-    myElement.removeEventListener('click', myEventHandler);
-
-}
-
-document.addEventListener('DOMContentLoaded', function () {
+function fullReset(newGameDOM, newGenerator) {
     // Get the overall div container
     let allElement = document.querySelector("#all-content");
-
-    // Build an HTML generator object
-    const newGenerator = new HTMLGeneration();
-    const newGameDOM = new GameDOM();
 
     // Build the three sections
     let header = newGenerator.createHeader();
@@ -46,34 +22,71 @@ document.addEventListener('DOMContentLoaded', function () {
     allElement.appendChild(header);
     allElement.appendChild(content);
     allElement.appendChild(footer);
+}
+
+function resetGrids(contentElement, newGameDOM) {
+    // Remove combat arena
+    let combatArena = document.querySelector("#combat-arena");
+    contentElement.removeChild(combatArena);
+
+    // Update the content section
+    contentElement.appendChild(newGameDOM.buildCombatArena());
+}
+
+function resetGame(text) {
+    // Log winner
+    console.log("GAME OVER. " + text + " WINS!");
+
+    // Remove future clicks
+    const enemyBoard = document.querySelector(".grid.ENEMY");
+    enemyBoard.removeEventListener('click', enemyClick);
+
+    // Reset the HTML
+    fullReset();
+}
+
+const enemyClick = function(event, newGameDOM) {
+    // Get the actual element clicked
+    const elemClicked = event.target;
+
+    // Process the user clicks
+    newGameDOM.userAttack(elemClicked);
+    if (newGameDOM.gameOver()) {
+        resetGame("PLAYER");
+    }
+    newGameDOM.aiAttack();
+    if (newGameDOM.gameOver()) {
+        resetGame("ENEMY");
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {   
+    // Build an HTML generator object
+    let newGenerator = new HTMLGeneration();
+    let newGameDOM = new GameDOM();
+
+    fullReset(newGameDOM, newGenerator);
+
+    // Engage and Enemy Grid buttons
+    const begin = document.querySelector('#start-button');
 
     // Start the game
-    const begin = document.querySelector('#start-button');
     begin.addEventListener('click', () => {
+        // Reset the combat arena
+        let contentElement = document.querySelector("#content");
+        resetGrids(contentElement, newGameDOM);
+
+        const enemyBoard = document.querySelector(".grid.ENEMY");
+
         newGameDOM.engage();
-    })
 
-    // Listen for user clicks
-    const enemyBoard = document.querySelector(".grid.ENEMY");
-    enemyBoard.addEventListener('click', (e) => {
-        // Get the actual element clicked
-        const elemClicked = e.target;
-
-        // Process the user clicks
-        newGameDOM.userAttack(elemClicked);
-        if (newGameDOM.gameOver()) {
-            resetGame("PLAYER");
-            return;
-        }
-        newGameDOM.aiAttack();
-        if (newGameDOM.gameOver()) {
-            resetGame("ENEMY");
-            return;
-        }
+        // Listen for user clicks
+        enemyBoard.addEventListener('click', function(event) {
+        enemyClick(event, newGameDOM);
+    });
     })
 
     // While game is not over, the AI waits for it's turn
-
 
     // End the game
 });
