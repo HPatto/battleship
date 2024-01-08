@@ -82,21 +82,23 @@ export class Player {
         const seed = this.getSeedCoord(shipLength);
         const orientation = this.getOrientation();
 
-        let shipCoords = undefined;
+        let shipCoords = false;
+
+        // console.log(this.getShipLocations());
 
         while (
-            shipCoords === undefined ||
-            this.validCoords(shipCoords)
+            shipCoords === false ||
+            !this.validCoords(shipCoords)
         ) {
             shipCoords = this.buildShipCoords(seed, orientation, shipLength);
+            console.log("We set new coords");
         }
-
-        // console.log(shipCoords);
 
         this.placeShip(
             shipCoords[0],
             shipCoords[shipCoords.length - 1]
         );   
+        console.log('One ship placed!');
     }
 
     buildShipCoords(seed, orientation, shipLength){

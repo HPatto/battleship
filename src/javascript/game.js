@@ -48,7 +48,7 @@ export class Game {
         // Need to set a certain length, and ensure 
         for (let i = 0; i < 5; i++){
             this.firstPlayer.setShipCoords(i+1);
-            // this.secondPlayer.setShipCoords(i+1);
+            this.secondPlayer.setShipCoords(i+1);
         }
     }
 
