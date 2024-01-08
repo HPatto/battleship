@@ -8,6 +8,7 @@ import {
     removeChildren,
     setNewContent
 } from './manipulateDOM.js';
+import ghLogo from '../assets/github-mark.png';
 
 export class HTMLGeneration {
     constructor() {
@@ -69,7 +70,7 @@ export class HTMLGeneration {
         creditDiv = addId(creditDiv, 'credit-div');
         creditParagraph = addClasses(creditParagraph, ['footer-text']);
 
-        githubImage.src = 'assets/github-mark.png';
+        githubImage.src = ghLogo;
 
         // Set the text content of the elements
         creditParagraph.textContent = (
