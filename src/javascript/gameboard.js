@@ -102,6 +102,17 @@ export class Gameboard {
         this.Ships.push(newShip);
     }
 
+    getShipLocations() {
+        let shipLocations = [];
+        this.gameBoard.forEach((value, key) => {
+            if (!(value === false)) {
+                shipLocations.push(key);
+            }           
+        });
+
+        return shipLocations;
+    }
+
     receiveAttack(attackCoord) {
         if (!(this.gameBoard[attackCoord])) {
             // No ship at the coord. Record missed strike.

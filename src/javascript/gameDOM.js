@@ -14,7 +14,35 @@ import {
 
 export class GameDOM {
     constructor() {
+        this.game;
+    }
 
+    // Set up the logic to begin accepting user input
+    engage() {
+        // Ships placed
+        newGame.setShips();
+
+        // Map the ship locations to the HTML elements for player 1.
+        displayShips("PLAYER");
+
+        // Some way to relate the board to the Map
+
+
+        // Set random ship positions for both players
+    }
+
+    displayShips(playerName) {
+        // For each key in a player's gameboard, get the coords.
+        let playerShipLocations = playerName.getShipLocations();
+        const allElems = document.querySelectorAll("." + playerName);
+        
+        allElems.forEach((elem) => {
+            playerShipLocations.forEach((coords) => {
+                if (elem.classList.contains(coords)) {
+                    elem = addClasses(elem, ['has-ship']);
+                }
+            });
+        });
     }
 
     // Settings pane
@@ -40,6 +68,7 @@ export class GameDOM {
         return optionsElem;
     }
 
+    // Surrender button
     buildResetButton() {
         let resetButton = document.createElement('button');
         let resetText = document.createElement('p');
@@ -51,6 +80,7 @@ export class GameDOM {
         return resetButton;
     }
 
+    // Engage button
     buildStartButton() {
         let startButton = document.createElement('button');
         let startText = document.createElement('p');
@@ -68,6 +98,10 @@ export class GameDOM {
         let combatArena = document.createElement('div');
         combatArena = addId(combatArena, 'combat-arena');
 
+        // Initialize a new game object
+        this.game = new Game();
+        this.game.setPlayers();
+
         // Get the individual grids
         const playerGrid = this.buildGrid("PLAYER");
         const computerGrid = this.buildGrid("ENEMY");
@@ -79,6 +113,7 @@ export class GameDOM {
         return combatArena;
     }
 
+    // Battlefield
     buildGrid(text) {
         // The grid is 10x10. Each key in the Map gives us an ID?
         let combatantArea = document.createElement('div');
@@ -86,14 +121,18 @@ export class GameDOM {
         let title = document.createElement('div');
         let titleText = document.createElement('p');
 
+        const yCoords = [
+            10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+        ];
+
         combatantArea = addClasses(combatantArea, ['combatant-arena']);
-        grid = addClasses(grid, ['grid']);
+        grid = addClasses(grid, ['grid', text]);
         title = addClasses(title, ['grid-title']);
 
         titleText.textContent = text;
 
         for (let i = 0; i < 10; i++) {
-            const newRow = this.buildRow();
+            const newRow = this.buildRow(yCoords[i], text);
             grid.appendChild(newRow);
         }
 
@@ -104,15 +143,24 @@ export class GameDOM {
         return combatantArea;
     }
 
-    buildRow() {
+    // Grid row
+    buildRow(yVal, text) {
         // Build the row
         let rowElem = document.createElement('div');
-        rowElem = addClasses(rowElem, ['grid-row']);
+        const xCoords = [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'
+        ];
+
+        rowElem = addClasses(rowElem, ['grid-row', text]);
 
         // Build and add the elements
         for (let i = 0; i < 10; i++) {
             let newElem = document.createElement('div');
-            newElem = addClasses(newElem, ['grid-element']);
+            const fullCoords = xCoords[i] + yVal;
+            newElem = addClasses(
+                newElem,
+                ['grid-element', fullCoords, text]
+            );
             rowElem.appendChild(newElem);
         }
 

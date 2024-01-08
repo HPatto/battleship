@@ -36,8 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
     content.appendChild(newGameDOM.buildSidePane());
     content.appendChild(newGameDOM.buildCombatArena());
 
-    // Add the threee sections
+    // Add the three sections
     allElement.appendChild(header);
     allElement.appendChild(content);
     allElement.appendChild(footer);
+
+    // Begin the game
+
+    // End the game
 });

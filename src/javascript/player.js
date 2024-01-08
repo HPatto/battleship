@@ -37,6 +37,10 @@ export class Player {
         this.playerGameboard.placeShip(startCoord, finishCoord);
     }
 
+    getShipLocations() {
+        return this.playerGameboard.getShipLocations();
+    }
+
     hasLost() {
         return this.playerGameboard.getAllShipsSunk();
     }

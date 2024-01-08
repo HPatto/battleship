@@ -39,6 +39,10 @@ export class Game {
         this.secondPlayer = new Player();
     }
 
+    getShips(aPlayer) {
+        return aPlayer.getShipLocations();
+    }
+
     setShips() {
         // Set ships for Player One
         this.firstPlayer.placeShip('A1', 'A4');
