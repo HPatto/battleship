@@ -69,8 +69,7 @@ export class HTMLGeneration {
         creditDiv = addId(creditDiv, 'credit-div');
         creditParagraph = addClasses(creditParagraph, ['footer-text']);
 
-        // creditDiv.setAttribute('href', 'https://github.com/HPatto');
-        githubImage.setAttribute('src', '../src/assets/github-mark.png');
+        githubImage.src = 'assets/github-mark.png';
 
         // Set the text content of the elements
         creditParagraph.textContent = (
