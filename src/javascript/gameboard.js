@@ -65,7 +65,16 @@ export class Gameboard {
 
         // Get length of the ship
         const shipLength = this.getShipLength(startCoord, finishCoord);
-        
+
+        // console.log("Start coord:");
+        // console.log(startCoord);
+
+        // console.log("Finish coord:");
+        // console.log(finishCoord);
+
+        // console.log("Ship length:");
+        // console.log(shipLength);
+
         // Instantiate new ship
         const newShip = new Ship(shipLength);
 
@@ -77,6 +86,8 @@ export class Gameboard {
         if (startCoord === finishCoord) {
             // Ship is one square. Add the coord.
             shipCoordArray.push(startCoord);
+            shipXCoords = startCoord[0];
+            shipYCoords = startCoord.slice(1);
         } else if (startCoord[0] === finishCoord[0]){
             // The ship is positioned in the y-axis
             shipXCoords = startCoord[0];

@@ -19,6 +19,12 @@ function updateBodyContent(bodyElem, clickedElem) {
     setBodyContent(bodyElem, newContent);
 }
 
+function resetGame(text) {
+    console.log("GAME OVER. " + text + " WINS!");
+    myElement.removeEventListener('click', myEventHandler);
+
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // Get the overall div container
     let allElement = document.querySelector("#all-content");
@@ -55,7 +61,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Process the user clicks
         newGameDOM.userAttack(elemClicked);
+        if (newGameDOM.gameOver()) {
+            resetGame("PLAYER");
+            return;
+        }
         newGameDOM.aiAttack();
+        if (newGameDOM.gameOver()) {
+            resetGame("ENEMY");
+            return;
+        }
     })
 
     // While game is not over, the AI waits for it's turn

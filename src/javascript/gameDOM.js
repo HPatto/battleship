@@ -71,7 +71,7 @@ export class GameDOM {
 
         // Get the most recent AI attack
         const lastCoords = this.game.mostRecentAttack();
-        console.log(lastCoords);
+        // console.log(lastCoords);
 
         let element = document.querySelector(
             ".grid-element." + lastCoords + ".PLAYER"
