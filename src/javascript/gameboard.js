@@ -113,8 +113,8 @@ export class Gameboard {
                 shipLocations.push(key);
             }           
         });
-        console.log("We got all the way here");
-        console.log(shipLocations);
+        // console.log("We got all the way here");
+        // console.log(shipLocations);
         return shipLocations;
     }
 

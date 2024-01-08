@@ -26,16 +26,44 @@ export class GameDOM {
         // Ships placed
         this.game.setShips();
 
-        // console.log("This is the game object");
-        // console.log(this.game);
 
         // Map the ship locations to the HTML elements for player 1.
         this.displayShips("PLAYER");
+        this.displayShips("ENEMY");
+    }
 
-        // Some way to relate the board to the Map
+    userAttack(element) {
+        // The user as clicked an element in the enemy grid.
 
+        // Has it already been clicked?
+        if (
+            element.classList.contains('miss') ||
+            element.classList.contains('hit')
+        ) {
+            // What is the correct way to process these actions?
+            return -1;
+        }
 
-        // Set random ship positions for both players
+        // Does the classList contain co-ordinates?
+        if (element.classList.contains("grid-element")) {
+            // Get the co-ords
+            const coords = [...element.classList][1];
+            this.game.fireShot(coords);
+
+            const enemyShips = this.game.secondPlayer.getShipLocations();
+            console.log("These are the coords");
+            console.log(coords);
+
+            const elemIsAShip = coords in enemyShips;
+            console.log(elemIsAShip);
+            
+            if (enemyShips.includes(coords)) {
+                element = addClasses(element, ['hit']);
+            } else {
+                element = addClasses(element, ['miss']);
+            }
+            
+        }
     }
 
     displayShips(playerName) {

@@ -47,5 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
         newGameDOM.engage();
     })
 
+    // Listen for user clicks
+    const enemyBoard = document.querySelector(".grid.ENEMY");
+    enemyBoard.addEventListener('click', (e) => {
+        // Get the actual element clicked
+        const elemClicked = e.target;
+
+        // Process the user clicks
+        newGameDOM.userAttack(elemClicked);
+    })
+
     // End the game
 });

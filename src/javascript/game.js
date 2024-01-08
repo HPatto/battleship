@@ -68,11 +68,12 @@ export class Game {
         // console.log('We finished one bit of combat');
     }
 
-    fireShot(firstPlayer, secondPlayer) {
+    fireShot(coords) {
         // Get coords. First player state updated to be sent
-        const attackCoords = firstPlayer.sendRandomAttack();
+        // const attackCoords = firstPlayer.sendRandomAttack();
         // console.log(attackCoords);
-        secondPlayer.receieveAttack(attackCoords);
+        this.firstPlayer.sendAttack(coords);
+        this.secondPlayer.receieveAttack(coords);
     }
 
     isGameOver() {

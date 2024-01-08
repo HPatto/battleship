@@ -244,3 +244,11 @@ p {
 .has-ship {
     background-color: var(--dark-colour);
 }
+
+.miss {
+    background-color: darkgray;
+}
+
+.hit {
+    background-color: var(--reset-colour);
+}
