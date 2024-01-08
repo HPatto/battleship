@@ -52,7 +52,6 @@ export class Player {
     sendRandomAttack() {
 
         let attackCoords = undefined;
-        // console.log("coords are undefined: " + (attackCoords === undefined));
         
         while (
             attackCoords === undefined ||
@@ -61,11 +60,8 @@ export class Player {
             let xCoord = this.getRandomLetter(10);
             let yCoord = this.getRandomNumber(1, 10);
             attackCoords = xCoord + yCoord;
-            // console.log(xCoord);
-            // console.log(yCoord);
         }
 
-        // console.log(attackCoords);
         return this.sendAttack(attackCoords);
     }
 
@@ -86,12 +82,6 @@ export class Player {
     }
 
     setShipCoords(shipLength) {
-        // const seed = this.getSeedCoord(shipLength);
-        // const orientation = this.getOrientation();
-
-        // console.log(seed);
-        // console.log(orientation);
-
         let shipCoords = false;
 
         while (
@@ -109,7 +99,6 @@ export class Player {
             shipCoords[0],
             shipCoords[shipCoords.length - 1]
         );   
-        // console.log('One ship placed!');
     }
 
     buildShipCoords(seed, orientation, shipLength){

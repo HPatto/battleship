@@ -52,7 +52,6 @@ export class Gameboard {
             boardMap.set(allCoords[i], false);
         }
         
-        // console.log(boardMap);
         return boardMap;
     }
 
@@ -65,15 +64,6 @@ export class Gameboard {
 
         // Get length of the ship
         const shipLength = this.getShipLength(startCoord, finishCoord);
-
-        // console.log("Start coord:");
-        // console.log(startCoord);
-
-        // console.log("Finish coord:");
-        // console.log(finishCoord);
-
-        // console.log("Ship length:");
-        // console.log(shipLength);
 
         // Instantiate new ship
         const newShip = new Ship(shipLength);
@@ -115,17 +105,13 @@ export class Gameboard {
 
     getShipLocations() {
         let shipLocations = [];
-        // console.log(this.gameBoard);
-        // console.log(this.gameBoard.size);
-        // console.log(this.gameBoard.get("A1"));
 
         this.gameBoard.forEach((value, key) => {
             if (!(value === false)) {
                 shipLocations.push(key);
             }           
         });
-        // console.log("We got all the way here");
-        // console.log(shipLocations);
+        
         return shipLocations;
     }
 
@@ -221,19 +207,3 @@ export class Gameboard {
         }
     }
 }
-
-// const myGameboard = new Gameboard();
-
-// myGameboard.placeShip("A1", "A5");
-// myGameboard.placeShip("B7","H7");
-
-// myGameboard.receiveAttack("A1");
-// myGameboard.receiveAttack("A2");
-// myGameboard.receiveAttack("A3");
-// myGameboard.receiveAttack("A4");
-// myGameboard.receiveAttack("A5");
-
-// myGameboard.receiveAttack("C4");
-
-// myGameboard.getGameboard();
-// console.log(myGameboard.getMissedAttacks());

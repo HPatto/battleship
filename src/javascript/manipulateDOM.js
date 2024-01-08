@@ -30,11 +30,15 @@ export function addId(element, idValue) {
     return element;
 }
 
-export function setNewContent(bodyElem, [newContentElemArray]) {
-    // We gotta be doing some serious stuff here
+export function removeChildren(bodyElem) {
     while (bodyElem.firstChild) {
         bodyElem.removeChild(bodyElem.firstChild);
     }
+}
+
+export function setNewContent(bodyElem, [newContentElemArray]) {
+    // We gotta be doing some serious stuff here
+    removeChildren(bodyElem);
 
     newContentElemArray.forEach(bodyElem.appendChild(newElem));
 }

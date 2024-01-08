@@ -1,7 +1,7 @@
 /* Defines the GameDOM object */
 
 // Have a think about best object design for these in the future
-import { HTMLGeneration } from "./defaultpage.js";
+// import { HTMLGeneration } from "./defaultpage.js";
 import { Game } from "./game.js";
 import {
     makeDiv,
@@ -19,9 +19,6 @@ export class GameDOM {
 
     // Set up the logic to begin accepting user input
     engage() {
-        // Reset the HTML
-        
-
         // Build the new game
         this.game = new Game();
 
@@ -30,8 +27,6 @@ export class GameDOM {
 
         // Map the ship locations to the HTML elements for player 1.
         this.displayShips("PLAYER");
-
-        console.log("We got some ship done");
     }
 
     playGame() {
@@ -76,7 +71,6 @@ export class GameDOM {
 
         // Get the most recent AI attack
         const lastCoords = this.game.mostRecentAttack();
-        // console.log(lastCoords);
 
         let element = document.querySelector(
             ".grid-element." + lastCoords + ".PLAYER"
@@ -100,8 +94,6 @@ export class GameDOM {
         
         let playerShipLocations = object.getShipLocations();
         const allElems = document.querySelectorAll("." + playerName);
-
-        // console.log(playerShipLocations);
         
         allElems.forEach((elem) => {
             playerShipLocations.forEach((coords) => {

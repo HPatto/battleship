@@ -5,6 +5,7 @@ import {
     addClasses,
     addId,
     makeGitHubImage,
+    removeChildren,
     setNewContent
 } from './manipulateDOM.js';
 
@@ -82,6 +83,11 @@ export class HTMLGeneration {
         footerDiv.appendChild(creditDiv);
 
         return footerDiv;
+    }
+
+    // Remove content
+    removeContent(parentElem) {
+        return removeChildren(parentElem);
     }
 
     // Remove all content parent element, append new elements

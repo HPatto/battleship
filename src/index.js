@@ -8,6 +8,7 @@ import { GameDOM } from "../src/javascript/gameDOM.js";
 function fullReset(newGameDOM, newGenerator) {
     // Get the overall div container
     let allElement = document.querySelector("#all-content");
+    newGenerator.removeContent(allElement);
 
     // Build the three sections
     let header = newGenerator.createHeader();
@@ -38,14 +39,20 @@ function resetGame(text) {
     console.log("GAME OVER. " + text + " WINS!");
 
     // Remove future clicks
-    const enemyBoard = document.querySelector(".grid.ENEMY");
+    let enemyBoard = document.querySelector(".grid.ENEMY");
     enemyBoard.removeEventListener('click', enemyClick);
-
-    // Reset the HTML
-    fullReset();
 }
 
-const enemyClick = function(event, newGameDOM) {
+function resetLogic() {
+    let newGenerator = new HTMLGeneration();
+    let newGameDOM = new GameDOM();
+
+    fullReset(newGameDOM, newGenerator);
+
+    return [newGenerator, newGameDOM];
+}
+
+const enemyClick = function(event, newGameDOM, newGenerator) {
     // Get the actual element clicked
     const elemClicked = event.target;
 
@@ -53,19 +60,18 @@ const enemyClick = function(event, newGameDOM) {
     newGameDOM.userAttack(elemClicked);
     if (newGameDOM.gameOver()) {
         resetGame("PLAYER");
+        return;
     }
     newGameDOM.aiAttack();
     if (newGameDOM.gameOver()) {
         resetGame("ENEMY");
+        return;
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {   
     // Build an HTML generator object
-    let newGenerator = new HTMLGeneration();
-    let newGameDOM = new GameDOM();
-
-    fullReset(newGameDOM, newGenerator);
+    let [newGenerator, newGameDOM] = resetLogic();
 
     // Engage and Enemy Grid buttons
     const begin = document.querySelector('#start-button');
@@ -82,11 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Listen for user clicks
         enemyBoard.addEventListener('click', function(event) {
-        enemyClick(event, newGameDOM);
+        enemyClick(event, newGameDOM, newGenerator);
     });
     })
-
-    // While game is not over, the AI waits for it's turn
-
-    // End the game
 });
