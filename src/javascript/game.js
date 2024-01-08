@@ -8,39 +8,24 @@ export class Game {
         this.secondPlayer;
         this.winner;
         this.shotsFired = 0;
+        this.mostRecentAIAttack;
 
         // These will not be used at the start
         this.numShips;
         this.numSquares;
     }
 
-    playGame() {
-        // Set the players
+    setGame() {
+        // Set players
         this.setPlayers();
 
-        // Set the ships
+        // Ships placed
         this.setShips();
-
-        // console.log("Do not pray for easy lives");
-
-        // While the game is not over, let them take turns firing
-        while (!(this.isGameOver())) {
-            // Fight babay
-            // console.log("Pray to be");
-            this.engageInCombat(this.firstPlayer, this.secondPlayer);
-        }
-
-        console.log(this.winner);
-        // console.log("Here are the boards");
     }
 
     setPlayers() {
         this.firstPlayer = new Player();
         this.secondPlayer = new Player();
-    }
-
-    getShips(aPlayer) {
-        return aPlayer.getShipLocations();
     }
 
     setShips() {
@@ -57,15 +42,19 @@ export class Game {
         this.secondPlayer.placeShip('H7', 'H8');
     }
 
-    engageInCombat(firstPlayer, secondPlayer) {
-        if (this.shotsFired % 2 === 0) {
-            // console.log("Stronger men");
-            this.fireShot(firstPlayer, secondPlayer);
-        } else {
-            this.fireShot(secondPlayer, firstPlayer);
+    getShips(aPlayer) {
+        return aPlayer.getShipLocations();
+    }
+
+    engageInCombat() {
+        if (!(this.shotsFired % 2 === 0)) {
+            // AI shoots
+            const randomAttack = this.secondPlayer.sendRandomAttack();
+            this.firstPlayer.receieveAttack(randomAttack);
+            this.shotsFired++;
+            this.mostRecentAIAttack = randomAttack;
+            // return randomAttack;
         }
-        this.shotsFired++;
-        // console.log('We finished one bit of combat');
     }
 
     fireShot(coords) {
@@ -74,6 +63,11 @@ export class Game {
         // console.log(attackCoords);
         this.firstPlayer.sendAttack(coords);
         this.secondPlayer.receieveAttack(coords);
+        this.shotsFired++;
+    }
+
+    mostRecentAttack() {
+        return this.mostRecentAIAttack;
     }
 
     isGameOver() {

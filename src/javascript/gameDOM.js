@@ -19,17 +19,22 @@ export class GameDOM {
 
     // Set up the logic to begin accepting user input
     engage() {
-        // Set the new game
+        // Build the new game
         this.game = new Game();
-        this.game.setPlayers();
 
-        // Ships placed
-        this.game.setShips();
-
+        // Initialize the new game
+        this.game.setGame();
 
         // Map the ship locations to the HTML elements for player 1.
         this.displayShips("PLAYER");
-        this.displayShips("ENEMY");
+    }
+
+    playGame() {
+        this.game.playGame();
+    }
+
+    gameOver() {
+        return this.game.isGameOver();
     }
 
     userAttack(element) {
@@ -51,18 +56,31 @@ export class GameDOM {
             this.game.fireShot(coords);
 
             const enemyShips = this.game.secondPlayer.getShipLocations();
-            console.log("These are the coords");
-            console.log(coords);
-
-            const elemIsAShip = coords in enemyShips;
-            console.log(elemIsAShip);
             
             if (enemyShips.includes(coords)) {
                 element = addClasses(element, ['hit']);
             } else {
                 element = addClasses(element, ['miss']);
             }
-            
+        }
+    }
+
+    aiAttack() {
+        // AI Fires back
+        this.game.engageInCombat();
+
+        // Get the most recent AI attack
+        const lastCoords = this.game.mostRecentAttack();
+        console.log(lastCoords);
+
+        let element = document.querySelector(
+            ".grid-element." + lastCoords + ".PLAYER"
+            );
+        
+        if (element.classList.contains("has-ship")) {
+            element = addClasses(element, ['hit']);
+        } else {
+            element = addClasses(element, ['miss']);
         }
     }
 

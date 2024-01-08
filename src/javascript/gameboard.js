@@ -119,13 +119,13 @@ export class Gameboard {
     }
 
     receiveAttack(attackCoord) {
-        if (!(this.gameBoard[attackCoord])) {
+        if (!(this.gameBoard.get(attackCoord))) {
             // No ship at the coord. Record missed strike.
             this.missedAttacks.push(attackCoord);
             // return false;
         } else {
             // Ship at the coord. Call the hit() method.
-            this.gameBoard[attackCoord].hit();
+            this.gameBoard.get(attackCoord).hit();
             // return true;
         }
     }

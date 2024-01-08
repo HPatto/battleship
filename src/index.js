@@ -55,7 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Process the user clicks
         newGameDOM.userAttack(elemClicked);
+        newGameDOM.aiAttack();
     })
+
+    // While game is not over, the AI waits for it's turn
+
 
     // End the game
 });

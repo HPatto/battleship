@@ -46,7 +46,7 @@ export class Player {
     }
 
     isValidAttack(coord) {
-        return (!(coord in this.alreadyCalled));
+        return (!(this.alreadyCalled.includes(coord)));
     }
 
     sendRandomAttack() {

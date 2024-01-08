@@ -253,6 +253,7 @@ p {
     background-color: darkgray;
 }
 
+.PLAYER .hit,
 .ENEMY .hit {
     background-color: var(--reset-colour);
 }
