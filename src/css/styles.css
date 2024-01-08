@@ -241,7 +241,11 @@ p {
     color: var(--reset-colour-click-text);
 }
 
-.has-ship {
+.ENEMY .has-ship {
+    background-color: white;
+}
+
+.PLAYER .has-ship {
     background-color: var(--dark-colour);
 }
 
@@ -249,6 +253,6 @@ p {
     background-color: darkgray;
 }
 
-.hit {
+.ENEMY .hit {
     background-color: var(--reset-colour);
 }
